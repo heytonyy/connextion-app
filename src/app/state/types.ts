@@ -1,5 +1,11 @@
 type StoreState = {
+  cards: CardType[];
   mode: string;
 };
 
-export type { StoreState };
+type CardType = {
+  category: string;
+  content: string;
+};
+
+export type { StoreState, CardType };

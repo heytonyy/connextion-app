@@ -1,8 +1,6 @@
 import { CardType } from "@/state/types";
 
-export const isServer = () => typeof window === "undefined";
-
-export const transformData = (data: any): CardType[] => {
+const transformData = (data: any): CardType[] => {
   const result: CardType[] = [];
 
   data.categories.forEach((category: any) => {
@@ -10,9 +8,12 @@ export const transformData = (data: any): CardType[] => {
       result.push({
         category: category.title,
         content: card.content,
+        position: card.position,
       });
     });
   });
 
   return result;
 };
+
+export default transformData;
