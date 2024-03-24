@@ -2,17 +2,36 @@ import { CardType } from "@/state/types";
 
 export const isServer = () => typeof window === "undefined";
 
+interface Category {
+  title: string;
+  cards: CardData[];
+}
+
+interface CardData {
+  position: number;
+  content: string;
+}
+
 export const transformData = (data: any): CardType[] => {
   const result: CardType[] = [];
 
-  data.categories.forEach((category: any) => {
-    category.cards.forEach((card: any) => {
+  data.categories.forEach((category: Category) => {
+    category.cards.forEach((card: CardData) => {
       result.push({
         category: category.title,
         content: card.content,
+        position: card.position,
       });
     });
   });
 
   return result;
+};
+
+export const setCardsByPosition = (cards: CardType[]): CardType[] => {
+  return cards.sort((a, b) => a.position - b.position);
+};
+
+export const shuffleCardsByPosition = (cards: CardType[]): CardType[] => {
+  return cards.sort(() => Math.random() - 0.5);
 };

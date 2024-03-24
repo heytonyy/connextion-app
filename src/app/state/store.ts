@@ -9,10 +9,10 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist/es/constants";
-import storageReducer from "./reducers";
+import cardReducer from "./reducers";
 
 const persistConfig = { key: "root", storage, version: 1 };
-const persistedReducer = persistReducer(persistConfig, storageReducer);
+const persistedReducer = persistReducer(persistConfig, cardReducer);
 
 const store = configureStore({
   reducer: persistedReducer,

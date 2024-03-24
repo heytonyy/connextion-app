@@ -1,9 +1,10 @@
 type StoreState = {
   cards: CardType[];
-  mode: string;
+  selectedCards: CardType[];
 };
 
 type CardType = {
+  position: number;
   category: string;
   content: string;
 };

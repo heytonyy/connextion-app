@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { transformData } from "@/utils/utils";
-import { useAppDispatch } from "@/state/hooks";
+import { useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "@/state/hooks";
+import { setCards } from "@/state/reducers";
+import { transformData, setCardsByPosition } from "@/utils/utils";
 import { CardType } from "@/state/types";
 import Card from "@/components/Card";
+import ShuffleButton from "@/components/ShuffleButton";
 
 export default function Grid() {
-  const [cards, setCards] = useState<CardType[]>(Array(16).fill(null));
-
+  const { cards } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,11 +17,11 @@ export default function Grid() {
       try {
         const response = await fetch("/api/cards/get-cards");
         const jsonData = await response.json();
+        const cardData = transformData(jsonData);
+        const sortedCards = setCardsByPosition(cardData);
+        dispatch(setCards(sortedCards));
 
-        dispatch({ type: "SET_CARDS", payload: transformData(jsonData) });
-        setCards(transformData(jsonData));
-
-        console.log("Data fetched:", jsonData);
+        // console.log("Fetched data:", sortedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -33,17 +34,22 @@ export default function Grid() {
   }, []);
 
   return (
-    <div className="grid grid-cols-4 gap-4">
-      {cards &&
-        cards.map((card, index) => (
-          <div
-            key={index}
-            className="cursor-pointer rounded-md bg-gray-200 p-4"
-          >
-            {/* Render the card content */}
-            <Card category={card.category} content={card.content} />
-          </div>
-        ))}
-    </div>
+    <>
+      <div className="grid grid-cols-4 gap-4">
+        {cards &&
+          cards.map((card: CardType) => (
+            <div key={card.position}>
+              <Card
+                position={card.position}
+                category={card.category}
+                content={card.content}
+              />
+            </div>
+          ))}
+      </div>
+      <div className="items-center justify-center">
+        <ShuffleButton />
+      </div>
+    </>
   );
 }
