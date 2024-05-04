@@ -6,6 +6,8 @@ export async function GET() {
     const dateString = date.toISOString().split("T")[0];
     const url = `https://www.nytimes.com/svc/connections/v2/${dateString}.json`;
 
+    // const url = `https://www.nytimes.com/svc/connections/v2/2024-04-01.json`;
+
     const response = await fetch(url);
     const data = await response.json();
 

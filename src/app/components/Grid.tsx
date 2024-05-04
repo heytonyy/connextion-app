@@ -2,11 +2,11 @@
 
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/state/hooks";
-import { setCards } from "@/state/reducers";
+import { setGrid } from "@/state/reducers";
 import { transformData, setCardsByPosition } from "@/utils/utils";
 import { CardType } from "@/state/types";
 import Card from "@/components/Card";
-import ShuffleButton from "@/components/ShuffleButton";
+import MenuButtons from "./MenuButtons";
 
 export default function Grid() {
   const { cards } = useAppSelector((state) => state);
@@ -19,9 +19,7 @@ export default function Grid() {
         const jsonData = await response.json();
         const cardData = transformData(jsonData);
         const sortedCards = setCardsByPosition(cardData);
-        dispatch(setCards(sortedCards));
-
-        // console.log("Fetched data:", sortedData);
+        dispatch(setGrid(sortedCards));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -47,9 +45,7 @@ export default function Grid() {
             </div>
           ))}
       </div>
-      <div className="items-center justify-center">
-        <ShuffleButton />
-      </div>
+      <MenuButtons />
     </>
   );
 }
