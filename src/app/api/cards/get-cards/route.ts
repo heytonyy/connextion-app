@@ -3,9 +3,16 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const date = new Date();
-    const dateString = date.toISOString().split("T")[0];
+    date.setDate(date.getDate() + 1); // Add 1 day to the current date
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const dateString = `${year}-${month}-${day}`;
+
+    console.log(dateString);
     const url = `https://www.nytimes.com/svc/connections/v2/${dateString}.json`;
 
+    // April Fools Day Emoji Conection:
     // const url = `https://www.nytimes.com/svc/connections/v2/2024-04-01.json`;
 
     const response = await fetch(url);

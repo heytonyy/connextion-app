@@ -4,12 +4,13 @@ import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/state/hooks";
 import { setGrid } from "@/state/reducers";
 import { transformData, setCardsByPosition } from "@/utils/utils";
-import { CardType } from "@/state/types";
+import { CardType, CategoryType } from "@/state/types";
 import Card from "@/components/Card";
 import MenuButtons from "./MenuButtons";
+import FoundCategory from "./FoundCategory";
 
 export default function Grid() {
-  const { cards } = useAppSelector((state) => state);
+  const { cards, foundCategories } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -33,6 +34,18 @@ export default function Grid() {
 
   return (
     <>
+      <>
+        {foundCategories &&
+          foundCategories.map((found: CategoryType, i) => (
+            <div key={i}>
+              <FoundCategory
+                category={found.category}
+                content={found.content}
+                color={found.color}
+              />
+            </div>
+          ))}
+      </>
       <div className="grid grid-cols-4 gap-4">
         {cards &&
           cards.map((card: CardType) => (
@@ -41,6 +54,7 @@ export default function Grid() {
                 position={card.position}
                 category={card.category}
                 content={card.content}
+                color={card.color}
               />
             </div>
           ))}

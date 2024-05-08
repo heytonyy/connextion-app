@@ -3,7 +3,7 @@ import { CardType } from "@/state/types";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { selectCard, deselectCard } from "@/state/reducers";
 
-export default function Card({ category, content, position }: CardType) {
+export default function Card({ category, content, position, color }: CardType) {
   const [isClicked, setIsClicked] = useState(false);
   const dispatch = useAppDispatch();
   const { selectedCards, resetSelectedCards } = useAppSelector(
@@ -25,7 +25,6 @@ export default function Card({ category, content, position }: CardType) {
     setIsClicked(false);
   }, [resetSelectedCards]);
 
-  // Add outter div to center the button? (classes: items-center justify-center)
   return (
     <button
       className={`w-full p-4 font-medium text-white shadow-[3px_3px_0px_black] transition-all ${

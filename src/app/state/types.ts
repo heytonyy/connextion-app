@@ -11,12 +11,13 @@ type CardType = {
   position: number;
   category: string;
   content: string;
+  color: string;
 };
 
 type CategoryType = {
   category: string;
   content: string;
-  dificulty: string;
+  color: string;
 };
 
-export type { StoreState, CardType };
+export type { StoreState, CardType, CategoryType };

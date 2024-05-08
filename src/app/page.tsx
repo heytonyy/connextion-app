@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-2">
       <div className="my-4 flex gap-8 text-6xl font-extrabold text-blue-500">
-        Connextions{" "}
+        ConNEXTions{" "}
         <span className="flex items-center text-4xl">{formattedDate}</span>
       </div>
       <div>

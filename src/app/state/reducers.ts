@@ -21,14 +21,25 @@ export const cardSlice = createSlice({
       state.cards = action.payload;
       state.selectedCards = [];
       state.mistakesRemaining = 4;
+      state.foundCategories = [];
       state.resetSelectedCards = false;
     },
     deselectAllCards: (state) => {
       state.selectedCards = [];
       state.resetSelectedCards = !state.resetSelectedCards;
     },
+
     selectCard: (state, action) => {
-      state.selectedCards.push(action.payload);
+      // Find the full card object from `cards` array using a unique identifier (position)
+      const fullCard = state.cards.find(
+        (card) => card.position === action.payload.position
+      );
+      if (fullCard) {
+        // Push the full card object, ensuring all properties including `color` are included
+        state.selectedCards.push(fullCard);
+      } else {
+        console.error("Card not found in grid");
+      }
     },
     deselectCard: (state, action) => {
       state.selectedCards = state.selectedCards.filter(
@@ -70,6 +81,17 @@ export const cardSlice = createSlice({
         state.cards = state.cards.filter(
           (card) => card.category !== categoryToRemove
         );
+        // Construct content string from each of the found categories in the form of
+        // "Content1, Content2, Content3, and Content4"
+        const content = state.selectedCards
+          .map((card) => card.content)
+          .join(", ");
+        // Add the category to the foundCategories array
+        state.foundCategories.push({
+          category: categoryToRemove,
+          content: content,
+          color: state.selectedCards[0].color,
+        });
       } else {
         state.mistakesRemaining -= 1;
       }

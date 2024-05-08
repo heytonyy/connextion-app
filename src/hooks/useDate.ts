@@ -6,6 +6,8 @@ const useDate = () => {
   useEffect(() => {
     const getFormattedDate = () => {
       const currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() + 1); // Add 1 day to the current date
+
       const month = currentDate.getMonth() + 1;
       const date = currentDate.getDate();
       const year = currentDate.getFullYear();
