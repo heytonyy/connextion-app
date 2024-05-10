@@ -3,11 +3,13 @@
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/state/hooks";
 import { setGrid } from "@/state/reducers";
-import { transformData, setCardsByPosition } from "@/utils/utils";
+import {
+  transformData,
+  setCardsByPosition,
+  getClientDate,
+} from "@/utils/utils";
 import { CardType, CategoryType } from "@/state/types";
-import Card from "@/components/Card";
-import MenuButtons from "./MenuButtons";
-import FoundCategory from "./FoundCategory";
+import { Card, FoundCategory, MenuButtons } from "@/components/index";
 
 export default function Grid() {
   const { cards, foundCategories } = useAppSelector((state) => state);
@@ -16,7 +18,18 @@ export default function Grid() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/cards/get-cards");
+        // Server date for fetching JSON
+        // const response = await fetch("/api/cards/get-cards");
+
+        // Client date for fetching JSON
+        const clientDate = getClientDate();
+        const response = await fetch("/api/cards/get-cards-client-date", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ date: clientDate }),
+        });
         const jsonData = await response.json();
         const cardData = transformData(jsonData);
         const sortedCards = setCardsByPosition(cardData);

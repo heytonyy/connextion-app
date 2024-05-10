@@ -41,3 +41,13 @@ export const setCardsByPosition = (cards: CardType[]): CardType[] => {
 export const shuffleCardsByPosition = (cards: CardType[]): CardType[] => {
   return cards.sort(() => Math.random() - 0.5);
 };
+
+export const getClientDate = () => {
+  const date = new Date();
+  date.setDate(date.getDate() + 1); // Add 1 day to the current date
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const dateString = `${year}-${month}-${day}`;
+  return dateString;
+};

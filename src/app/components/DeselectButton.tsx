@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
-import { deselectAllCards } from "../state/reducers";
+import { deselectAllCards } from "@/state/reducers";
 
 export default function Button() {
   const dispatch = useAppDispatch();

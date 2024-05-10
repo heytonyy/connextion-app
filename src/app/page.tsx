@@ -1,10 +1,13 @@
 "use client";
 
-import Grid from "@/components/Grid";
 import useDate from "@/hooks/useDate";
 import GithubCorner from "react-github-corner";
+import { Grid, Leaderboard, Timer } from "@/components/index";
 
 export default function Home() {
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+
   const formattedDate = useDate();
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-2">
@@ -21,6 +24,10 @@ export default function Home() {
       </div>
       <Grid />
       <GithubCorner href="https://github.com/heytonyy/connextion-app" />
+      <div className="flex items-center justify-center gap-4">
+        <Leaderboard />
+        <Timer />
+      </div>
     </div>
   );
 }

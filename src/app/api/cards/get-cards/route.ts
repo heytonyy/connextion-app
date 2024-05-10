@@ -9,11 +9,12 @@ export async function GET() {
     const day = String(date.getDate()).padStart(2, "0");
     const dateString = `${year}-${month}-${day}`;
 
-    console.log(dateString);
     const url = `https://www.nytimes.com/svc/connections/v2/${dateString}.json`;
 
-    // April Fools Day Emoji Conection:
+    // April Fools Day Emoji Connection:
     // const url = `https://www.nytimes.com/svc/connections/v2/2024-04-01.json`;
+
+    console.log("Date from server: " + dateString);
 
     const response = await fetch(url);
     const data = await response.json();

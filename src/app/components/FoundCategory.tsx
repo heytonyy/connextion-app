@@ -1,4 +1,4 @@
-import { CategoryType } from "../state/types";
+import { CategoryType } from "@/state/types";
 
 export default function FoundCategory({
   category,

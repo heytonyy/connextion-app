@@ -1,17 +1,18 @@
-import ShuffleButton from "@/components/ShuffleButton";
-import SubmitButton from "@/components/SubmitButton";
-import DeselectButton from "@/components/DeselectButton";
-import { useAppDispatch, useAppSelector } from "../state/hooks";
-import { useState, useEffect } from "react";
+import { useAppSelector } from "@/state/hooks";
+import {
+  DeselectButton,
+  ShuffleButton,
+  SubmitButton,
+} from "@/components/index";
 
 export default function MenuButtons() {
   const { mistakesRemaining } = useAppSelector((state) => state);
 
   return (
     <>
-      <div className="my-4 flex gap-4">
+      <div className="my-4 flex items-center justify-center gap-4">
         Mistakes Remaining:
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           {Array(mistakesRemaining)
             .fill(null)
             .map((_, index) => (

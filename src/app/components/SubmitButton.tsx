@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
-import { makeGuess } from "../state/reducers";
+import { makeGuess } from "@/state/reducers";
 
 export default function Button() {
   const dispatch = useAppDispatch();

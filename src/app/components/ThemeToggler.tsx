@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 import { useAppDispatch } from "@/app/state/hooks";
 import { setMode } from "@/app/state/reducers";
 
-export function ThemeToggler() {
+export default function ThemeToggler() {
   const [mounted, setMounted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
