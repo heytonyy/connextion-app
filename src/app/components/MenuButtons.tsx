@@ -11,7 +11,7 @@ export default function MenuButtons() {
     <>
       <div className="my-4 flex gap-4">
         Mistakes Remaining:
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           {Array(mistakesRemaining)
             .fill(null)
             .map((_, index) => (
@@ -26,7 +26,7 @@ export default function MenuButtons() {
             ))}
         </div>
       </div>
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-2 sm:gap-4">
         <ShuffleButton />
         <DeselectButton />
         <SubmitButton />

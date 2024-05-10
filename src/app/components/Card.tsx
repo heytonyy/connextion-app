@@ -27,7 +27,7 @@ export default function Card({ category, content, position, color }: CardType) {
 
   return (
     <button
-      className={`w-full p-4 font-medium text-white shadow-[3px_3px_0px_black] transition-all ${
+      className={`w-full p-2 text-sm font-medium text-white shadow-[3px_3px_0px_black] transition-all sm:p-4 md:text-lg ${
         isClicked
           ? "translate-x-[3px] translate-y-[3px] bg-black shadow-none"
           : "bg-indigo-500 hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-indigo-600 hover:shadow-none"

@@ -6,8 +6,11 @@ export default function FoundCategory({
   color,
 }: CategoryType) {
   return (
-    <div className={`w-full p-4 text-black`} style={{ backgroundColor: color }}>
-      <div className="">{category}</div>
+    <div
+      className={`w-full p-2 text-center text-black sm:p-4`}
+      style={{ backgroundColor: color }}
+    >
+      <div className="font-bold">{category}</div>
       <div>{content}</div>
     </div>
   );

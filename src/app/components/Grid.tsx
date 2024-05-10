@@ -33,8 +33,8 @@ export default function Grid() {
   }, []);
 
   return (
-    <>
-      <>
+    <div className="flex w-[360px] flex-col gap-2 sm:w-[420px] sm:gap-4 md:w-[600px]">
+      <div className="grid w-full gap-3 sm:gap-4">
         {foundCategories &&
           foundCategories.map((found: CategoryType, i) => (
             <div key={i}>
@@ -45,8 +45,8 @@ export default function Grid() {
               />
             </div>
           ))}
-      </>
-      <div className="grid grid-cols-4 gap-4">
+      </div>
+      <div className="grid w-full grid-cols-4 gap-3 sm:gap-4">
         {cards &&
           cards.map((card: CardType) => (
             <div key={card.position}>
@@ -60,6 +60,6 @@ export default function Grid() {
           ))}
       </div>
       <MenuButtons />
-    </>
+    </div>
   );
 }
