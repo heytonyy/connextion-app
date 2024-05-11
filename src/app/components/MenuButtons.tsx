@@ -10,7 +10,7 @@ export default function MenuButtons() {
 
   return (
     <>
-      <div className="my-4 flex items-center justify-center gap-4">
+      <div className="my-2 flex items-center justify-center gap-4">
         Mistakes Remaining:
         <div className="flex items-center justify-center gap-2">
           {Array(mistakesRemaining)
@@ -27,7 +27,7 @@ export default function MenuButtons() {
             ))}
         </div>
       </div>
-      <div className="flex items-center justify-center gap-2 sm:gap-4">
+      <div className="my-2 flex items-center justify-center gap-2 sm:gap-4">
         <ShuffleButton />
         <DeselectButton />
         <SubmitButton />

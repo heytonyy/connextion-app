@@ -46,33 +46,37 @@ export default function Grid() {
   }, []);
 
   return (
-    <div className="flex w-[360px] flex-col gap-2 sm:w-[420px] sm:gap-4 md:w-[600px]">
-      <div className="grid w-full gap-3 sm:gap-4">
-        {foundCategories &&
-          foundCategories.map((found: CategoryType, i) => (
-            <div key={i}>
-              <FoundCategory
-                category={found.category}
-                content={found.content}
-                color={found.color}
-              />
-            </div>
-          ))}
+    <>
+      <div className="flex w-[360px] flex-col gap-2 sm:w-[420px] sm:gap-4 md:w-[600px]">
+        <div className="grid w-full gap-3 sm:gap-4">
+          {foundCategories &&
+            foundCategories.map((found: CategoryType, i) => (
+              <div key={i}>
+                <FoundCategory
+                  category={found.category}
+                  content={found.content}
+                  color={found.color}
+                />
+              </div>
+            ))}
+        </div>
+        <div className="grid w-full grid-cols-4 gap-3 sm:gap-4">
+          {cards &&
+            cards.map((card: CardType) => (
+              <div key={card.position}>
+                <Card
+                  position={card.position}
+                  category={card.category}
+                  content={card.content}
+                  color={card.color}
+                />
+              </div>
+            ))}
+        </div>
       </div>
-      <div className="grid w-full grid-cols-4 gap-3 sm:gap-4">
-        {cards &&
-          cards.map((card: CardType) => (
-            <div key={card.position}>
-              <Card
-                position={card.position}
-                category={card.category}
-                content={card.content}
-                color={card.color}
-              />
-            </div>
-          ))}
+      <div className="flex w-[360px] flex-col sm:w-[420px] md:w-[600px]">
+        <MenuButtons />
       </div>
-      <MenuButtons />
-    </div>
+    </>
   );
 }

@@ -8,6 +8,7 @@ const initialState: StoreState = {
   mistakesRemaining: 4,
   foundCategories: [],
   resetSelectedCards: false,
+  time: null,
 };
 
 export const cardSlice = createSlice({
@@ -23,16 +24,20 @@ export const cardSlice = createSlice({
       state.mistakesRemaining = 4;
       state.foundCategories = [];
       state.resetSelectedCards = false;
+      state.time = null;
     },
     deselectAllCards: (state) => {
       state.selectedCards = [];
       state.resetSelectedCards = !state.resetSelectedCards;
     },
-
+    setTimeToState: (state, action) => {
+      state.time = action.payload;
+    },
     selectCard: (state, action) => {
-      // Find the full card object from `cards` array using a unique identifier (position)
+      // Find the full card object from cards array using a unique identifier (position)
       const fullCard = state.cards.find(
-        (card) => card.position === action.payload.position
+        (card: { position: number }) =>
+          card.position === action.payload.position
       );
       if (fullCard) {
         // Push the full card object, ensuring all properties including `color` are included
@@ -110,5 +115,6 @@ export const {
   setMode,
   makeGuess,
   deselectAllCards,
+  setTimeToState,
 } = cardSlice.actions;
 export default cardSlice.reducer;

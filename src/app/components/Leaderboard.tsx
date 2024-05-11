@@ -1,7 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Modal() {
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/leaderboard/get-leaderboard");
+      const data = await response.json();
+      console.log(data);
+    };
+
+    fetchData();
+
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
